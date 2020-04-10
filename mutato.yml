@@ -1,0 +1,10 @@
+environments:
+  - acceptance
+  - production
+resources:
+  - service:
+      provider: fargate
+      container: nginx:latest
+  - network:
+      vpc:
+        maxAZs: {{ 1 if environment == "acceptance" else 3 }}
